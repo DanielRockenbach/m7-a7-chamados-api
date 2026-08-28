@@ -1,0 +1,61 @@
+<main class="container">
+  <header class="cabecalho">
+    <h1>Chamados técnicos</h1>
+    <button
+      type="button"
+      class="botao-principal"
+      (click)="alternarFormulario()"
+      [attr.aria-expanded]="exibindoFormulario()"
+      aria-controls="formulario-novo-chamado"
+    >
+      {{ exibindoFormulario() ? "Cancelar" : "Novo chamado" }}
+    </button>
+  </header>
+
+  @if (exibindoFormulario()) {
+    <form
+      id="formulario-novo-chamado"
+      class="formulario"
+      [formGroup]="formulario"
+      (ngSubmit)="criarChamado()"
+    >
+      <h2>Novo chamado</h2>
+
+      <label for="titulo">Título</label>
+      <input id="titulo" type="text" formControlName="titulo" />
+      @if (formulario.controls.titulo.invalid && formulario.controls.titulo.touched) {
+        <small class="erro">Informe um título com até 100 caracteres.</small>
+      }
+
+      <label for="descricao">Descrição</label>
+      <textarea id="descricao" rows="4" formControlName="descricao"></textarea>
+      @if (formulario.controls.descricao.invalid && formulario.controls.descricao.touched) {
+        <small class="erro">Informe uma descrição com até 500 caracteres.</small>
+      }
+
+      <label for="prioridade">Prioridade</label>
+      <select id="prioridade" formControlName="prioridade">
+        <option value="baixa">Baixa</option>
+        <option value="media">Média</option>
+        <option value="alta">Alta</option>
+      </select>
+
+      <button type="submit" class="botao-principal" [disabled]="criando()">
+        {{ criando() ? "Criando..." : "Criar chamado" }}
+      </button>
+    </form>
+  }
+
+  <app-filtro-chamados
+    [pesquisa]="pesquisa()"
+    [status]="filtroStatus()"
+    (pesquisaChange)="atualizarPesquisa($event)"
+    (statusChange)="atualizarStatus($event)"
+  />
+
+  <app-lista-chamados
+    [chamados]="chamadosFiltrados()"
+    [carregando]="carregando()"
+    [erro]="erro()"
+  />
+</main>

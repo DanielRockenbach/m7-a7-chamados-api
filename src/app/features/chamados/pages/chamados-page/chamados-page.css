@@ -1,0 +1,78 @@
+.container {
+  width: min(900px, 92%);
+  margin: 40px auto;
+}
+
+.cabecalho {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.cabecalho h1 {
+  margin: 0;
+}
+
+.botao-principal {
+  border: 0;
+  border-radius: 6px;
+  padding: 11px 18px;
+  background: #4b2aad;
+  color: white;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 700;
+}
+
+.botao-principal:hover:not(:disabled) {
+  background: #382080;
+}
+
+.botao-principal:disabled {
+  cursor: wait;
+  opacity: 0.65;
+}
+
+.formulario {
+  display: grid;
+  gap: 8px;
+  margin-bottom: 24px;
+  padding: 20px;
+  background: white;
+  border-left: 4px solid #4b2aad;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.formulario h2 {
+  margin: 0 0 8px;
+}
+
+.formulario input,
+.formulario textarea,
+.formulario select {
+  box-sizing: border-box;
+  width: 100%;
+  margin-bottom: 8px;
+  border: 1px solid #b9bcc8;
+  border-radius: 4px;
+  padding: 10px;
+  font: inherit;
+}
+
+.formulario textarea {
+  resize: vertical;
+}
+
+.formulario .botao-principal {
+  justify-self: start;
+  margin-top: 8px;
+}
+
+@media (max-width: 560px) {
+  .cabecalho {
+    align-items: stretch;
+    flex-direction: column;
+  }
+}
