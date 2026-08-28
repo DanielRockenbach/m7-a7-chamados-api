@@ -2,7 +2,7 @@ import "dotenv/config";
 import dns from "node:dns";
 import { MongoClient } from "mongodb";
 
-const dnsServers = (process.env.MONGODB_DNS_SERVERS ?? "1.1.1.1,8.8.8.8")
+const dnsServers = (process.env.MONGODB_DNS_SERVERS ?? "")
 	.split(",")
 	.map((server) => server.trim())
 	.filter(Boolean);

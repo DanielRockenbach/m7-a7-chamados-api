@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: m7-a7-chamados-api
+    runtime: node
+    rootDir: m7-a7-chamados-api
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: MONGODB_URI
+        sync: false
